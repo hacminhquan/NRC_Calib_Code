@@ -1,0 +1,198 @@
+\begin{thebibliography}{38}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Brockman et~al.(2016)Brockman, Cheung, Pettersson, Schneider, Schulman, Tang, and Zaremba]{brockman2016openai}
+Greg Brockman, Vicki Cheung, Ludwig Pettersson, Jonas Schneider, John Schulman, Jie Tang, and Wojciech Zaremba.
+\newblock Openai gym, 2016.
+
+\bibitem[Codevilla et~al.(2018)Codevilla, M{\"u}ller, L{\'o}pez, Koltun, and Dosovitskiy]{Codevilla2018}
+Felipe Codevilla, Matthias M{\"u}ller, Antonio L{\'o}pez, Vladlen Koltun, and Alexey Dosovitskiy.
+\newblock End-to-end driving via conditional imitation learning.
+\newblock In \emph{International Conference on Robotics and Automation (ICRA)}, 2018.
+
+\bibitem[Dang et~al.(2023)Dang, Nguyen, Tran, Tran, and Ho]{dang2023neural}
+Hien Dang, Tan Nguyen, Tho Tran, Hung Tran, and Nhat Ho.
+\newblock Neural collapse in deep linear network: From balanced to imbalanced data.
+\newblock \emph{arXiv preprint arXiv:2301.00437}, 2023.
+
+\bibitem[Ergen and Pilanci(2021)]{ergen2021revealing}
+Tolga Ergen and Mert Pilanci.
+\newblock Revealing the structure of deep neural networks via convex duality.
+\newblock In \emph{International Conference on Machine Learning}, pages 3004--3014. PMLR, 2021.
+
+\bibitem[Fang et~al.(2021)Fang, He, Long, and Su]{fang2021exploring}
+Cong Fang, Hangfeng He, Qi~Long, and Weijie~J Su.
+\newblock Exploring deep neural networks via layer-peeled model: Minority collapse in imbalanced training.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 118\penalty0 (43):\penalty0 e2103091118, 2021.
+
+\bibitem[Fisher et~al.(2024)Fisher, Meng, and Papyan]{fisher2024pushing}
+Quinn Fisher, Haoming Meng, and Vardan Papyan.
+\newblock Pushing boundaries: Mixup's influence on neural collapse.
+\newblock \emph{arXiv preprint arXiv:2402.06171}, 2024.
+
+\bibitem[Fu et~al.(2020)Fu, Kumar, Nachum, Tucker, and Levine]{fu2020d4rl}
+Justin Fu, Aviral Kumar, Ofir Nachum, George Tucker, and Sergey Levine.
+\newblock {D4RL}: Datasets for deep data-driven reinforcement learning.
+\newblock \emph{arXiv preprint arXiv:2004.07219}, 2020.
+
+\bibitem[Galanti et~al.(2021)Galanti, Gy{\"o}rgy, and Hutter]{galanti2021role}
+Tomer Galanti, Andr{\'a}s Gy{\"o}rgy, and Marcus Hutter.
+\newblock On the role of neural collapse in transfer learning.
+\newblock \emph{arXiv preprint arXiv:2112.15121}, 2021.
+
+\bibitem[Gallouédec et~al.(2024)Gallouédec, Beeching, Romac, and Dellandréa]{gallouedec2024jack}
+Quentin Gallouédec, Edward Beeching, Clément Romac, and Emmanuel Dellandréa.
+\newblock {Jack of All Trades, Master of Some, a Multi-Purpose Transformer Agent}.
+\newblock \emph{arXiv preprint arXiv:2402.09844}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2402.09844}.
+
+\bibitem[Guo et~al.(2024)Guo, Ross, Zhao, George, Ling, Xu, and Dong]{guo2024cross}
+Li~Guo, Keith Ross, Zifan Zhao, Andriopoulos George, Shuyang Ling, Yufeng Xu, and Zixuan Dong.
+\newblock Cross entropy versus label smoothing: A neural collapse perspective.
+\newblock \emph{arXiv preprint arXiv:2402.03979}, 2024.
+
+\bibitem[Han et~al.(2021)Han, Papyan, and Donoho]{han2021neural}
+XY~Han, Vardan Papyan, and David~L Donoho.
+\newblock Neural collapse under {MSE} loss: Proximity to and dynamics on the central path.
+\newblock \emph{arXiv preprint arXiv:2106.02073}, 2021.
+
+\bibitem[He and Su(2023)]{he2023law}
+Hangfeng He and Weijie~J Su.
+\newblock A law of data separation in deep learning.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 120\penalty0 (36):\penalty0 e2221704120, 2023.
+
+\bibitem[He et~al.(2016)He, Zhang, Ren, and Sun]{he2016deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In \emph{Proceedings of the IEEE conference on computer vision and pattern recognition}, pages 770--778, 2016.
+
+\bibitem[Hong and Ling(2023)]{hong2023neural}
+Wanli Hong and Shuyang Ling.
+\newblock Neural collapse for unconstrained feature model under cross-entropy loss with imbalanced data.
+\newblock \emph{arXiv preprint arXiv:2309.09725}, 2023.
+
+\bibitem[Hornik et~al.(1989)Hornik, Stinchcombe, and White]{hornik1989multilayer}
+Kurt Hornik, Maxwell Stinchcombe, and Halbert White.
+\newblock Multilayer feedforward networks are universal approximators.
+\newblock \emph{Neural networks}, 2\penalty0 (5):\penalty0 359--366, 1989.
+
+\bibitem[Hui et~al.(2022)Hui, Belkin, and Nakkiran]{hui2022limitations}
+Like Hui, Mikhail Belkin, and Preetum Nakkiran.
+\newblock Limitations of neural collapse for understanding generalization in deep learning.
+\newblock \emph{arXiv preprint arXiv:2202.08384}, 2022.
+
+\bibitem[Kim and Kim()]{kimfixed}
+Hoyong Kim and Kangil Kim.
+\newblock Fixed non-negative orthogonal classifier: Inducing zero-mean neural collapse with fea-ture dimension separation.
+
+\bibitem[Kothapalli(2022)]{kothapalli2022neural}
+Vignesh Kothapalli.
+\newblock Neural collapse: A review on modelling principles and generalization.
+\newblock \emph{arXiv preprint arXiv:2206.04041}, 2022.
+
+\bibitem[Mixon et~al.(2020)Mixon, Parshall, and Pi]{mixon2020neural}
+Dustin~G Mixon, Hans Parshall, and Jianzong Pi.
+\newblock Neural collapse with unconstrained features.
+\newblock \emph{arXiv preprint arXiv:2011.11619}, 2020.
+
+\bibitem[Papyan et~al.(2020)Papyan, Han, and Donoho]{papyan2020prevalence}
+Vardan Papyan, XY~Han, and David~L Donoho.
+\newblock Prevalence of neural collapse during the terminal phase of deep learning training.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 117\penalty0 (40):\penalty0 24652--24663, 2020.
+
+\bibitem[Poggio and Liao(2020)]{poggio2020explicit}
+Tomaso Poggio and Qianli Liao.
+\newblock Explicit regularization and implicit bias in deep network classifiers trained with the square loss.
+\newblock \emph{arXiv preprint arXiv:2101.00072}, 2020.
+
+\bibitem[Rangamani et~al.(2023)Rangamani, Lindegaard, Galanti, and Poggio]{rangamani2023feature}
+Akshay Rangamani, Marius Lindegaard, Tomer Galanti, and Tomaso~A Poggio.
+\newblock Feature learning in deep classifiers through intermediate neural collapse.
+\newblock In \emph{International Conference on Machine Learning}, pages 28729--28745. PMLR, 2023.
+
+\bibitem[Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and Klimov]{schulman2017proximal}
+John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov.
+\newblock Proximal policy optimization algorithms, 2017.
+
+\bibitem[Seo et~al.(2024)Seo, Koh, Jeung, Lee, Kim, Lee, Cho, Choi, Kim, and Choi]{seo2024learning}
+Minhyuk Seo, Hyunseo Koh, Wonje Jeung, Minjae Lee, San Kim, Hankook Lee, Sungjun Cho, Sungik Choi, Hyunwoo Kim, and Jonghyun Choi.
+\newblock Learning equi-angular representations for online continual learning.
+\newblock \emph{arXiv preprint arXiv:2404.01628}, 2024.
+
+\bibitem[S{\'u}ken{\'\i}k et~al.(2024)S{\'u}ken{\'\i}k, Mondelli, and Lampert]{sukenik2024deep}
+Peter S{\'u}ken{\'\i}k, Marco Mondelli, and Christoph~H Lampert.
+\newblock Deep neural collapse is provably optimal for the deep unconstrained features model.
+\newblock \emph{Advances in Neural Information Processing Systems}, 36, 2024.
+
+\bibitem[Sun et~al.(2017)Sun, Shrivastava, Singh, and Gupta]{sun2017revisiting}
+Chen Sun, Abhinav Shrivastava, Saurabh Singh, and Abhinav Gupta.
+\newblock Revisiting unreasonable effectiveness of data in deep learning era.
+\newblock In \emph{Proceedings of the IEEE international conference on computer vision}, pages 843--852, 2017.
+
+\bibitem[Tarasov et~al.(2022)Tarasov, Nikulin, Akimov, Kurenkov, and Kolesnikov]{tarasov2022corl}
+Denis Tarasov, Alexander Nikulin, Dmitry Akimov, Vladislav Kurenkov, and Sergey Kolesnikov.
+\newblock {CORL}: Research-oriented deep offline reinforcement learning library.
+\newblock In \emph{3rd Offline RL Workshop: Offline RL as a ''Launchpad''}, 2022.
+\newblock URL \url{https://openreview.net/forum?id=SyAS49bBcv}.
+
+\bibitem[Thrampoulidis et~al.(2022)Thrampoulidis, Kini, Vakilian, and Behnia]{thrampoulidis2022imbalance}
+Christos Thrampoulidis, Ganesh~Ramachandra Kini, Vala Vakilian, and Tina Behnia.
+\newblock Imbalance trouble: Revisiting neural-collapse geometry.
+\newblock \emph{Advances in Neural Information Processing Systems}, 35:\penalty0 27225--27238, 2022.
+
+\bibitem[Tirer and Bruna(2022)]{tirer2022extended}
+Tom Tirer and Joan Bruna.
+\newblock Extended unconstrained features model for exploring deep neural collapse.
+\newblock In \emph{International Conference on Machine Learning}, pages 21478--21505. PMLR, 2022.
+
+\bibitem[Tirer et~al.(2023)Tirer, Huang, and Niles-Weed]{tirer2023perturbation}
+Tom Tirer, Haoxiang Huang, and Jonathan Niles-Weed.
+\newblock Perturbation analysis of neural collapse.
+\newblock In \emph{International Conference on Machine Learning}, pages 34301--34329. PMLR, 2023.
+
+\bibitem[Todorov et~al.(2012)Todorov, Erez, and Tassa]{mujoco}
+Emanuel Todorov, Tom Erez, and Yuval Tassa.
+\newblock Mujoco: A physics engine for model-based control.
+\newblock In \emph{2012 IEEE/RSJ International Conference on Intelligent Robots and Systems}, pages 5026--5033, 2012.
+\newblock \doi{10.1109/IROS.2012.6386109}.
+
+\bibitem[Towers et~al.(2023)Towers, Terry, Kwiatkowski, Balis, Cola, Deleu, Goulão, Kallinteris, KG, Krimmel, Perez-Vicente, Pierré, Schulhoff, Tai, Shen, and Younis]{towers_gymnasium_2023}
+Mark Towers, Jordan~K. Terry, Ariel Kwiatkowski, John~U. Balis, Gianluca~de Cola, Tristan Deleu, Manuel Goulão, Andreas Kallinteris, Arjun KG, Markus Krimmel, Rodrigo Perez-Vicente, Andrea Pierré, Sander Schulhoff, Jun~Jet Tai, Andrew Tan~Jin Shen, and Omar~G. Younis.
+\newblock Gymnasium, March 2023.
+\newblock URL \url{https://zenodo.org/record/8127025}.
+
+\bibitem[Wojtowytsch et~al.(2020)]{wojtowytsch2020emergence}
+Stephan Wojtowytsch et~al.
+\newblock On the emergence of simplex symmetry in the final and penultimate layers of neural network classifiers.
+\newblock \emph{arXiv preprint arXiv:2012.05420}, 2020.
+
+\bibitem[Yang et~al.(2022)Yang, Chen, Li, Xie, Lin, and Tao]{yang2022inducing}
+Yibo Yang, Shixiang Chen, Xiangtai Li, Liang Xie, Zhouchen Lin, and Dacheng Tao.
+\newblock Inducing neural collapse in imbalanced learning: Do we really need a learnable classifier at the end of deep neural network?
+\newblock \emph{Advances in neural information processing systems}, 35:\penalty0 37991--38002, 2022.
+
+\bibitem[Zhang et~al.(2017)Zhang, Song, and Qi]{zhifei2017cvpr}
+Zhifei Zhang, Yang Song, and Hairong Qi.
+\newblock Age progression/regression by conditional adversarial autoencoder.
+\newblock In \emph{IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}. IEEE, 2017.
+
+\bibitem[Zhou et~al.(2022{\natexlab{a}})Zhou, Li, Ding, You, Qu, and Zhu]{zhou2022optimization}
+Jinxin Zhou, Xiao Li, Tianyu Ding, Chong You, Qing Qu, and Zhihui Zhu.
+\newblock On the optimization landscape of neural collapse under {MSE} loss: Global optimality with unconstrained features.
+\newblock In \emph{International Conference on Machine Learning}, pages 27179--27202. PMLR, 2022{\natexlab{a}}.
+
+\bibitem[Zhou et~al.(2022{\natexlab{b}})Zhou, You, Li, Liu, Liu, Qu, and Zhu]{zhou2022all}
+Jinxin Zhou, Chong You, Xiao Li, Kangning Liu, Sheng Liu, Qing Qu, and Zhihui Zhu.
+\newblock Are all losses created equal: A neural collapse perspective.
+\newblock \emph{Advances in Neural Information Processing Systems}, 35:\penalty0 31697--31710, 2022{\natexlab{b}}.
+
+\bibitem[Zhu et~al.(2021)Zhu, Ding, Zhou, Li, You, Sulam, and Qu]{zhu2021geometric}
+Zhihui Zhu, Tianyu Ding, Jinxin Zhou, Xiao Li, Chong You, Jeremias Sulam, and Qing Qu.
+\newblock A geometric analysis of neural collapse with unconstrained features.
+\newblock \emph{Advances in Neural Information Processing Systems}, 34:\penalty0 29820--29834, 2021.
+
+\end{thebibliography}

@@ -1,0 +1,36 @@
+\begin{table}[h!]
+\caption{Hyperparameter settings for experiments with weight decay on MuJoCo datasets.}
+\label{table:mujoco_mlp}
+\vskip 0.15in
+\begin{center}
+\begin{small}
+\begin{tabular}{cll}
+\toprule
+    & \textbf{Hyperparameter} & \textbf{Value}  \\
+\midrule
+    & Number of hidden layers   & $3$ \\
+  Model Architecture  & Hidden layer dimension & $256$  \\ 
+    & Activation function & ReLU  \\ 
+    & Number of linear projection layer ($\bW$) & 1 \\
+\midrule
+    & Epochs & 1.5e6, Reacher \\
+    &   & 1e6, Swimmer \\
+    &   & 2e5, Hopper\\
+    & Batch size & 256 \\
+    & Optimizer & SGD \\
+    & Learning rate & 1e-2 \\
+Training    & Weight decay & 1.5e-3, Reacher \\
+    &   & 1e-2, Swimmer \\
+    &   & 1e-2, Hopper \\
+    & Seeds & 0, 1, 2 \\
+    & Compute resources & Intel(R) Xeon(R) Platinum 8268 CPU \\
+    & Number of CPU compute workers & 4 \\
+    & Requested compute memory & 16 GB \\
+    & Approximate average execution time & 16 hours\\
+    
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table} 
+

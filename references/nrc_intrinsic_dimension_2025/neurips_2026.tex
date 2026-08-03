@@ -1,0 +1,471 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2026
+
+% The authors should use one of these tracks.
+% Before accepting by the NeurIPS conference, select one of the options below.
+% 0. "default" for submission
+\usepackage[preprint]{neurips_2026}
+% the "default" option is equal to the "main" option, which is used for the Main Track with double-blind reviewing.
+% 1. "main" option is used for the Main Track
+%  \usepackage[main]{neurips_2026}
+% 2. "position" option is used for the Position Paper Track
+%  \usepackage[position]{neurips_2026}
+% 3. "eandd" option is used for the Evaluations & Datasets Track
+ % \usepackage[eandd]{neurips_2026}
+% 4. "creativeai" option is used for the Creative AI Track
+%  \usepackage[creativeai]{neurips_2026}
+% 5. "sglblindworkshop" option is used for the Workshop with single-blind reviewing
+ % \usepackage[sglblindworkshop]{neurips_2026}
+% 6. "dblblindworkshop" option is used for the Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop]{neurips_2026}
+
+% After being accepted, the authors should add "final" behind the track to compile a camera-ready version.
+% 1. Main Track
+ % \usepackage[main, final]{neurips_2026}
+% 2. Position Paper Track
+%  \usepackage[position, final]{neurips_2026}
+% 3. Evaluations & Datasets Track
+ % \usepackage[eandd, final]{neurips_2026}
+% 4. Creative AI Track
+%  \usepackage[creativeai, final]{neurips_2026}
+% 5. Workshop with single-blind reviewing
+%  \usepackage[sglblindworkshop, final]{neurips_2026}
+% 6. Workshop with double-blind reviewing
+%  \usepackage[dblblindworkshop, final]{neurips_2026}
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote.
+% For workshops (5., 6.), the authors should add the name of the workshop, "\workshoptitle" command is used to set the workshop title.
+% \workshoptitle{WORKSHOP TITLE}
+
+% "preprint" option is used for arXiv or other preprint submissions
+ % \usepackage[preprint]{neurips_2026}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2026}
+
+% My stuff
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{subfig}         % for \subfloat
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage{titletoc}
+\usepackage[normalem]{ulem}
+
+% Notation definitions
+\input{math_commands}
+\newcommand{\bX}{{\mathbf X}}
+\newcommand{\bW}{{\mathbf W}}
+\newcommand{\bY}{{\mathbf Y}}
+\newcommand{\bR}{{\mathbf R}}
+\newcommand{\bA}{{\mathbf A}}
+\newcommand{\bH}{{\mathbf H}}
+\newcommand{\bI}{{\mathbf I}}
+\newcommand{\bZ}{{\mathbf Z}}
+\newcommand{\bC}{{\mathbf C}}
+\newcommand{\bV}{{\mathbf V}}
+\newcommand{\bh}{{\mathbf h}}
+\newcommand{\bz}{{\mathbf z}}
+\newcommand{\bzero}{{\mathbf 0}}
+\newcommand{\bWT}{{\mathbf W}^{T}}
+\newcommand{\bYT}{{\mathbf Y}^{T}}
+\newcommand{\bHT}{{\mathbf H}^{T}}
+\newcommand{\bhi}{{\mathbf h}_i}
+\newcommand{\by}{{\mathbf y}}
+\newcommand{\byb}{{\bar{\mathbf y}}}
+\newcommand{\yb}{{\bar{y}}}
+\newcommand{\bYb}{{\bar{\mathbf Y}}}
+\newcommand{\bx}{{\mathbf x}}
+\newcommand{\bb}{{\mathbf b}}
+\newcommand{\be}{{\mathbf e}}
+\newcommand{\bc}{{\mathbf c}}
+\newcommand{\bw}{{\mathbf w}}
+\newcommand{\bv}{{\mathbf v}}
+\newcommand{\bSigma}{{\mathbf \Sigma}}
+\newcommand{\byi}{{\mathbf y}_i}
+\newcommand{\bxi}{{\mathbf x}_i}
+\newcommand{\lmin}{\lambda_{\text{min}}}
+\newcommand{\lH}{\lambda_{\bH}}
+\newcommand{\lW}{\lambda_{\bW}}
+\newcommand{\lb}{\lambda_{\bb}}
+\newcommand{\lw}{\lambda_{\bw}}
+\newcommand{\Rd}{\mathbb{R}^d}
+\newcommand{\idx}{\ensuremath{\mathrm{ID}_{\mathrm{X}}}}
+\newcommand{\idh}{\ensuremath{\mathrm{ID}_{\mathrm{H}}}}
+\newcommand{\idy}{\ensuremath{\mathrm{ID}_{\mathrm{Y}}}}
+\newcommand{\idp}{\ensuremath{\mathrm{ID}_{\mathrm{P}}}}
+
+% Theorem-style
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+
+% Note. For the workshop paper template, both \title{} and \workshoptitle{} are required, with the former indicating the paper title shown in the title and the latter indicating the workshop title displayed in the footnote. 
+\title{Geometric Analysis of Neural Regression Collapse via Intrinsic Dimension}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{
+George Andriopoulos$^{1}$\thanks{Equal contribution. $^\dagger$Corresponding author: \texttt{zixuandong@nyu.edu}} \quad Zixuan Dong$^{2,3*\dagger}$
+  \quad Bimarsha Adhikari$^{1*}$
+  \quad Keith Ross$^{1}$\AND
+  \text{\normalfont $^1$ New York University Abu Dhabi \quad
+  $^2$ SFSC of AI and DL, NYU Shanghai}\\
+$^3$ New York University
+  % David S.~Hippocampus\thanks{Use footnote for providing further information
+  %   about author (webpage, alternative address)---\emph{not} for acknowledging
+  %   funding agencies.} \\
+  % Department of Computer Science\\
+  % Cranberry-Lemon University\\
+  % Pittsburgh, PA 15213 \\
+  % \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+  Neural multivariate regression underpins a wide range of domains such as control, robotics, and finance, yet the geometry of its learned representations remains poorly characterized. While neural collapse has been shown to benefit generalization in classification, we find that analogous collapse in regression consistently degrades performance. To explain this contrast, we analyze regression models through the lens of intrinsic dimension. Across control tasks and synthetic datasets, we estimate the intrinsic dimension of last-layer features (\idh) and compare it with that of the regression targets (\idy). Collapsed models exhibit $\idh < \idy$, leading to over-compression and poor generalization, whereas non-collapsed models typically maintain $\idh \ge \idy$. For the non-collapsed models, performance with respect to $\idh$ depends on the data quantity and noise levels. From these observations, we identify two regimes—over-compressed and under-compressed—that determine when expanding or reducing feature dimensionality improves performance. Our results provide new geometric insights into neural regression collapse and suggest practical strategies for enhancing generalization.
+\end{abstract}
+
+
+\section{Introduction}
+\begin{wrapfigure}{r}{0.4\textwidth}
+    \vspace{-12pt}
+    \centering
+    \includegraphics[width=\linewidth]{figures/Main_body/figure1_main.pdf}
+    \caption{Neural Regression Collapse correlates with high Test MSE. The smaller the NRC value, the closer features lie to the $n$-dimensional subspace.}
+    \vspace{-12pt}
+    \label{fig:collapse}
+\end{wrapfigure}
+
+Neural multivariate regression has emerged as a cornerstone of modern machine learning, powering a wide spectrum of applications where the outputs are continuous and vector-valued. In imitation learning for autonomous driving, regression models predict control actions such as speed and steering angle from human driving demonstrations \citep{ross2011dagger}. In robotics, they enable agents to replicate expert trajectories \citep{chen2021dt}. In finance, regression underlies predictive analytics ranging from risk estimation to stock price forecasting \citep{gu2020asset}. 
+Finally, reinforcement learning employs regression to approximate value functions, with targets derived from Monte Carlo or bootstrapped returns \citep{gallici2025pqn}. The ubiquity of regression across these domains underscores the importance of a principled understanding of the representational geometry learned by neural networks in multivariate regression tasks.  
+
+In this work, we empirically investigate the \emph{geometric structure of neural multivariate regression}, with an emphasis on the geometry of last-layer feature vectors. Prior efforts have largely framed this problem through the lens of \emph{neural collapse}. In classification, Neural Collapse (NC) describes the emergence of a highly symmetric configuration: last-layer features converge to the vertices of a Simplex Equiangular Tight Frame (ETF), aligned with the classifier weights \citep{papyan2020prevalence}. In regression, by contrast, Neural Regression Collapse (NRC) manifests as the concentration of last-layer features within a linear subspace spanned by the top $n$ principal components of the last-layer feature matrix, where $n$ is the number of target variates. Since $n$ is typically much smaller than the feature dimension, regression collapse implies a major reduction in representational degrees of freedom \citep{andriopoulos2024prevalence}.
+
+In this paper, we first make a key empirical observation: \emph{In contrast with classification, collapsed regression models consistently exhibit degraded generalization as compared to their non-collapsed counterparts}. Figure~\ref{fig:collapse} illustrates this phenomenon, showing high test MSE for models with highly collapsed features (low NRC metric) for five robotic locomotion tasks. 
+Existing theoretical and empirical treatments of regression collapse, including the work of \citet{andriopoulos2024prevalence}, do not account for this degradation. This raises a central open question: \textbf{Why does neural collapse hinder generalization in multivariate regression, in contrast to its beneficial role in classification?}
+
+\begin{wrapfigure}{l}{0.35\textwidth}
+    \centering
+    \vspace{-10pt}
+    \includegraphics[width=\linewidth]{figures/Main_body/NRC_Geometry.pdf}
+    \caption{When the target dimension is $n=2$, the collapsed features (blue points) with intrinsic dimension of 1 can lie close to a subspace (yellow plane) spanned by the first 2 principal components (red arrows) of the features.}
+    \vspace{-16pt}
+    \label{fig:nrc_geometry}
+\end{wrapfigure}
+
+We address this question using \emph{intrinsic dimension (ID)}, a more refined tool than neural regression collapse for analyzing regression feature geometry. ID measures the effective dimensionality of the manifold in which data lies, capturing nonlinearities that the PCA approach of NRC cannot (Figure~\ref{fig:nrc_geometry}). We conduct a systematic study of collapsed and non-collapsed models across diverse regression tasks, including simulated robotic control and synthetic image regression. While ID has been studied in the context of neural classification \citep{ansuini2019intrinsic}, to the best of our knowledge, we are the first to systematically analyze neural regression collapse (NRC) from this perspective. 
+
+Our findings reveal that the intrinsic dimension of the regression targets ($\idy$) acts as a critical threshold. Collapsed models typically satisfy $\idh < \idy$, where $\idh$ denotes the intrinsic dimension of the last-layer features, meaning the learned representations are over-compressed and lack the degrees of freedom needed to reconstruct the target manifold. Non-collapsed models, in contrast, typically maintain $\idh \ge \idy$. This threshold separates two regimes: an \emph{over-compressed} regime ($\idh < \idy$) where increasing feature dimension improves generalization, and an \emph{under-compressed} regime ($\idh \ge \idy$) where, in low-data or noisy settings, reducing it helps instead. Together, these results explain why collapse is detrimental in regression and suggest practical strategies for improving generalization. In summary, our contributions are:
+\begin{itemize}[leftmargin=16pt]
+    \item We provide, to the best of our knowledge, the first systematic investigation of neural regression collapse through the lens of intrinsic dimension. We show that intrinsic dimension reveals geometric structure that NRC's linear PCA methodology cannot capture, including nonlinear manifold collapse within the $n$-dimensional subspace (Section~\ref{sec:nrc_geometry}).
+
+    \item We empirically demonstrate that the relationship between $\idh$ and $\idy$ identifies over-compressed and under-compressed regimes, explaining both why regression collapse degrades generalization and under what conditions adjusting feature dimensionality improves performance (Section~\ref{sec:generalization}). We complement these findings with a mathematical analysis that provides intuition for how regularization drives over-compression (Section~\ref{sec:mathematical_analysis}).
+    
+    \item Our refined geometric understanding of regression representations suggests practical strategies for improving generalization in applied regression tasks. We demonstrate that the ID gap $|\idh - \idy|$ can serve as a practical surrogate for policy evaluation in visual robotic control, motivating principled model selection that reduces costly environment rollouts (Section~\ref{sec:practical}).
+\end{itemize}
+
+
+\section{Related Work} \label{sec:related_work}
+
+\textbf{NC in classification.} Neural collapse (NC) was first observed empirically by \citet{papyan2020prevalence} and has since been analyzed theoretically through the Unconstrained Feature Model \citep{mixon2020neural} and the layer-peeled model \citep{fang2021exploring}. NC has been shown to arise under diverse conditions \citep{han2021neural, tirer2022extended, yaras2022neural, zhou2022optimization, zhou2022all, zhu2021geometric} and loss functions such as label smoothing \citep{guo2024cross}. See also \citep{hong2023neural, thrampoulidis2022imbalance, yang2022inducing}. 
+
+\textbf{NC beyond single-label classification.} \citet{li2023neural} extended NC to multi-label classification, showing that embeddings lie in the span of their label means. \citet{andriopoulos2024prevalence} formalized Neural Regression Collapse (NRC) for multivariate regression. \citet{ma2025neural} demonstrated NC in deep ordinal regression under the UFM framework, \citet{wu2024linguistic} identified ``linguistic collapse'' in large language models, and \citet{sukenik2025neural} proved NC is globally optimal in modern regularized architectures including ResNets and transformers.
+
+\textbf{Intrinsic dimension in deep networks.} Classical local-neighborhood estimators of intrinsic dimension \citep{levina2004maximum, amsaleg2015estimating, facco2017estimating,allegra2020data} have been applied in neural settings to distinguish adversarial from natural inputs via local intrinsic dimension \citep{ma2018characterizing} and to detect untruthful LLM outputs \citep{yin2024characterizing}. Complementary topological approaches---such as Neural Persistence \citep{rieck2018neural} and graph-based invariants \citep{corneanu2019does, corneanu2020computing}---provide an alternative lens on network structure, with recent theoretical grounding via persistent homology \citep{birdal2021intrinsic}. Intrinsic dimension has also been studied as a complexity measure through parameter-space degrees of freedom \citep{gao2016degrees, janson2015effective}, pruning-based compressibility \citep{blier2018description}, and direct estimation \citep{ansuini2019intrinsic, li2018measuring, ma2018dimensionality, pope2021intrinsic}, with compression-based generalization bounds linking lower-dimensional representations to better generalization \citep{arora2018stronger, barsbey2021heavy, hsu2021generalization, suzuki2018spectral, suzuki2019compression, zhang2024topology}. Earlier foundational work on network redundancy includes \citet{denil2013predicting} and \citet{lecun1989optimal}.
+
+
+
+\section{Background and Key Metrics} \label{sec:preliminary}
+We consider the \emph{neural multivariate regression} problem \citep{andriopoulos2024prevalence}, with $M$ training examples $\{(\bx_i, \by_i), i=1,...,M\}$, where each input $\bx_i$ belongs to $\mathbb{R}^D$ and each target vector $\by_i$ belongs to $\mathbb{R}^n$. Considering a deep regression network of the form:
+\[
+f_{\theta, \bW, \bb}(\bx)=\bW \bh_{\theta}(\bx)+\bb,
+\]
+where $\bh_{\theta}(\cdot):\mathbb{R}^D\to \mathbb{R}^d$ is the non-linear multi-layer feature extractor, $\bW\in\mathbb{R}^{n\times d}$ represents the final linear layer in the model, and $\bb\in \mathbb{R}^n$ is the bias vector. The parameters $\theta, \bW, \bb$ are all trainable. We typically train the DNN using gradient descent to minimize the regularized $L_2$ loss:
+\[
+\min_{\theta, \bW, \bb} \frac{1}{2M} \sum_{i=1}^M ||f_{\theta, \bW, \bb}(\bx_i)-\by_i||_2^2+\frac{\lambda_{WD}}{2}(||\theta||_2^2+||\bW||_F^2),
+\]
+where $||\cdot||_2$ and $||\cdot||_F$ denote the $L_2$-norm and the Frobenius norm, respectively; and $\lambda_{WD}$ denotes the full-model weight decay coefficient.
+
+To characterize the geometric properties of last-layer representations of neural networks in regression tasks, we consider two central metrics: the NRC1 metric \citep{andriopoulos2024prevalence} and the 2-Nearest Neighbor (2-NN) intrinsic dimension estimator \citep{facco2017estimating}.
+
+\paragraph{Neural Regression Collapse: NRC1 metric.} \label{nrc1} In regression, neural collapse is defined by the extent to which the last-layer feature vectors collapse to a subspace spanned by their top $n$ principal components (PCs). Let $\bh_i:=\bh_{\theta}(\bx_i)$ be the feature vector associated with example $\bx_i$, $i=1,\ldots,M$. %where $M$ is the number of training examples. 
+Further let $\widetilde{\bh}_i$ be the centered normalized feature vector, that is, $\widetilde{\bh}_i:=(\bh_i-\bar{\bh})\cdot ||\bh_i-\bar{\bh}||^{-1}$ where $\bar{\bh}:=M^{-1}\sum_{i=1}^M \bh_i$. For any matrix $\bC \in \mathbb{R}^{p\times q}$ and any vector $\bv \in \mathbb{R}^p$, let $\text{proj}(\bv|\bC)$ denote the projection of $\bv$ onto the subspace spanned by the columns of $\bC$. Let $\bH_{\text{PCA}}$ be the $d\times n$ matrix with the columns consisting of the first $n$ PCs of the feature matrix $\bH = [\bh_1,\dots, \bh_M] \in \mathbb{R}^{d\times M}$. The NRC1 metric is defined as
+\begin{displaymath}
+\text{NRC1}:=\frac{1}{M} \sum_{i=1}^M ||\widetilde{\bh}_i-\text{proj}(\widetilde{\bh}_i|\bH_{\text{PCA}})||_2^2 .
+\end{displaymath} 
+
+\begin{wrapfigure}{r}{0.35\textwidth}
+    \centering
+    \vspace{-6pt}
+    \includegraphics[width=\linewidth]{figures/Main_body/figure3_main.pdf}
+    \caption{NRC1 decreases with stronger weight decay, leading to model collapse.}
+    \label{fig:epoch-nrc}
+    \vspace{-10pt}
+\end{wrapfigure}
+
+ A model is considered collapsed if NRC1 is small, indicating that the features lie almost entirely within an $n$-dimensional subspace. Non-collapsed models exhibit higher NRC1 values, differing from those of collapsed models by orders of magnitude. \citet{andriopoulos2024prevalence} demonstrated that slightly increased weight decay $\lambda_{WD}$ quickly leads to model collapse during training. Figure \ref{fig:epoch-nrc} investigates NRC1 during training with varying weight decay parameters $\lambda_{WD}$. We see that when $\lambda_{WD}$ is zero or small, there is no neural regression collapse; but if we increase the weight decay, the NRC1 geometric structure emerges. Although \citet{andriopoulos2024prevalence} attributes collapse primarily to weight decay, feature collapse is not exclusive to this regularization. In Appendix~\ref{appx:nrc1_regularization}, we empirically show that dropout regularization \citep{srivastava14adropout} and the low-rank simplicity bias induced by increasing model depth \citep{huh2023lora_bias} can also drive feature collapse, even under zero or mild weight decay.
+
+
+\paragraph{Intrinsic Dimension via 2-NN Estimation.}
+To uncover the finer geometry of the learned features, beyond what linear methods like PCA reveal, we turn to intrinsic dimension: the minimal number of degrees of freedom needed to describe the data without significant information loss. Unlike PCA, intrinsic dimension captures the dimensionality of nonlinear manifolds (Figure~\ref{fig:nrc_geometry}), making it a more informative geometric descriptor.
+
+We estimate intrinsic dimension using the 2-NN estimator introduced by \citet{facco2017estimating}. For a given point, let $r_1$ and $r_2$ denote the distances to its first and second nearest neighbors; define the ratio $\mu := r_2/r_1$. Under the assumption of locally uniform data density, the cumulative distribution of the ratio follows a Pareto distribution with parameter $d$: $F(\mu) = 1 - \mu^{-d}$ for $\mu \geq 1$. The intrinsic dimension $d$ is then estimated by linear regression. 
+
+The 2-NN estimator has been widely adopted to analyze data and representation manifolds across deep learning, including adversarial robustness~\citep{ma2018characterizing}, image classification~\citep{ansuini2019intrinsic, pope2021intrinsic}, representation correlation~\citep{basile2025id_correlation}, and continuous control via reinforcement learning~\citep{tiwari2025rl_geometry}. Beyond its ability to reliably capture nonlinear manifold structure, it is hyperparameter-free, computationally efficient, and requires only that the data density is approximately uniform within the range of each point's second neighbor, a considerably weaker assumption than the global uniformity required by other classical estimators~\citep{levina2004maximum}. In Appendix~\ref{2nnalg}, we provide further details and intuitions.
+
+
+\section{Datasets} \label{sec:datasets}
+We perform experiments on proprioceptive and visual robot locomotion datasets as well as synthetic image regression datasets, described in this section. Full experimental details are provided in Appendix~\ref{appx:exp_details}. Additionally, Appendix~\ref{appx:more_tasks} examines three more challenging datasets with varying data sizes and higher intrinsic dimensions.
+
+\input{tables/dataset_info}
+
+\paragraph{Proprioceptive MuJoCo Locomotion.} 
+MuJoCo \citep{brockman2016openai, towers_gymnasium_2023} is a widely used physics simulator for continuous-control reinforcement learning. Following \citet{andriopoulos2024prevalence}, we use Reacher, Swimmer, and Hopper datasets, and additionally include the higher-dimensional Halfcheetah and Ant datasets from the D4RL benchmark \citep{fu2020d4rl}. Each dataset contains expert demonstrations with proprioceptive state inputs ($\bx_i$) and corresponding action targets ($\by_i$). States encode joint positions, angles, velocities, and angular velocities, while actions represent joint torques. We subsample the expert data to form low- and high-data regimes of 1,000 and 20,000 samples, respectively. Trained policy architectures are 3-layer MLPs with varying width, operating directly on the proprioceptive state inputs.
+
+\paragraph{Synthetic Image Regression.}
+We construct two vision-based regression tasks that differ in the amount of task-irrelevant noise present in the targets. In both cases, regression targets are generated by applying a fixed random linear projection to extracted image features.
+For \emph{MNIST regression}, features are extracted from the penultimate layer of a CNN trained to over 99\% accuracy on MNIST, and then projected to 25 dimensions. Because the feature extractor is trained on the same domain, image-feature mismatches are largely suppressed, yielding clean, self-consistent targets.
+For \emph{CIFAR-10 regression}, features are extracted using a ResNet-18 pretrained on ImageNet and \emph{not} fine-tuned on CIFAR-10, and then projected to 10 dimensions. This domain mismatch causes the projected targets to retain instance-specific, task-irrelevant variation, resulting in noisy targets.
+For both tasks, regression models are 3-layer MLPs with varying width, operating on the same image tensors used to generate synthetic targets.
+
+
+\paragraph{Visual Continuous Control.}
+Visual control is particularly challenging because each frame provides only partial information about the system state, effectively forming a Partially Observed Markov Decision Process (POMDP)~\citep{yarats2022drq_v2}. The model must infer underlying transition dynamics and identify salient visual features directly from high-dimensional pixel inputs. We use the Cheetah-run dataset~\citep{lu2023vd4rl}, a visual control benchmark derived from the DeepMind Control Suite~\citep{tassa2018deepmindcontrolsuite}, which also builds on the MuJoCo engine but differs from the proprioceptive tasks above in that inputs are raw RGB image observations. Following standard practice in visual control, we stack three consecutive frames to form $84 \times 84 \times 9$ input tensors, providing temporal context for inferring velocities and dynamics. Targets correspond to continuous control commands ($n=6$), and we employ up to 80K expert demonstrations from the dataset. During training, the model architecture consists of a 4-layer CNN image encoder followed by a 3-layer MLP policy head.
+
+\section{Intrinsic Dimension Refines NRC Geometry} \label{sec:nrc_geometry}
+NRC1 measures the degree to which last-layer features collapse to an $n$-dimensional linear subspace, and as shown in Figure~\ref{fig:epoch-nrc}, a small amount of weight decay often suffices for such collapse to occur. However, NRC1 does not reveal whether the features further collapse into lower-dimensional nonlinear manifolds. To explore this question, we measure the intrinsic dimension of the last-layer features, denoted $\idh$, via the 2-NN estimator.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/Main_body/finer_nrc_geometry.pdf}
+    \caption{Relationship between NRC1 and intrinsic dimension of the last-layer features $\idh$. Dots correspond to models trained with different architectures and weight decay parameters, with colors denoting the degree of weight decay. The horizontal red dashed line is drawn at $\idy$, the intrinsic dimension of the targets. The blue line is drawn at $\idx$, the intrinsic dimension of the inputs.}
+    \label{fig:nrc1_id}
+    % \vspace{-10pt}
+\end{figure}
+
+Figure~\ref{fig:nrc1_id} presents scatter plots of $\idh$ versus NRC1 for five MuJoCo datasets. The critical value $ID_Y$, the intrinsic dimension of the targets, denoted by the dashed-red lines in Figure \ref{fig:nrc1_id}, is consistently upper-bounded by $n$, the dimension of the targets. For highly collapsed models with near-zero NRC1, the intrinsic dimension of last-layer features satisfies $\idh \le \idy$ and continues to shrink even as NRC1 saturates at zero. That is, \emph{collapsed models learn features that lie on increasingly lower-dimensional nonlinear manifolds within an $n$-dimensional linear subspace}. So, although the NRC1 metric is useful in understanding the linear-subspace structure of the last-layer features in collapsed models, it is inadequate at uncovering this more refined geometric structure. 
+
+\input{tables/pca_test}
+
+To further verify this nonlinear structure, Figure~\ref{fig:nonlinear_manifold} visualizes PCA projections of collapsed 1D features in Swimmer ($n=2$) and Hopper ($n=3$), revealing visibly curved manifolds that cannot be spanned by a single linear subspace. For the higher-dimensional Halfcheetah dataset, we examine a collapsed feature manifold with $\idh = 3.6 < n = 6$. We compare global PCA projection errors (onto the top-$k$ PCs of the full feature matrix) with local PCA projection errors (onto the top-$k$ PCs of each point's 64 nearest neighbors). As shown in the table of Figure~\ref{fig:nonlinear_manifold}, the global error increases sharply from $k=5$ to $k=4$, while the local error jumps from $k=4$ to $k=3$. This indicates that the nearly-4D feature manifold is embedded in a 5D linear subspace and cannot itself be linear. These results echo the analysis of curved feature manifolds in classification by \citet{ansuini2019intrinsic}.
+
+In contrast, non-collapsed models with higher NRC1 values satisfy $\idh > \idy$, and their intrinsic dimension increases monotonically with NRC1, making the two metrics qualitatively interchangeable in this regime. In other words, \emph{non-collapsed models learn features whose manifold dimension exceeds that of the targets}. Intrinsic dimension thus offers two concrete advantages over NRC1: it reveals a soft threshold at $\idy$ separating two geometrically distinct regimes, and it quantifies the degree of collapse ($\idh$) across the full range of NRC1 values. For the remainder of this paper, we therefore focus on intrinsic dimension. Appendix~\ref{appx: id_evolution} further analyzes the evolution of intrinsic dimension during training.
+
+
+\section{Intrinsic Dimension Predicts NRC Generalization} \label{sec:generalization}
+
+Having now investigated the relationship between NRC and intrinsic dimension, we now examine what insights intrinsic dimension can provide about NRC generalization. Particularly, we will explore why generalization error increases as $ID_H$ (and hence as NRC1) decreases, as seen in Figure~\ref{fig:collapse}. As we discuss in more detail at the end of this section, this property is in contrast with classification, for which performance typically improves when neural collapse becomes stronger.
+
+Figure \ref{fig:generalization} shows the relationship between $ID_H$ and both training and test MSE for five datasets: Halfcheetah-1K, Halfcheetah-20K, CIFAR-10, MNIST, and Cheetah-run-20K datasets. The corresponding figures for other MuJoCo datasets are in Appendix~\ref{appx:generalization}.
+
+\paragraph{Train MSE decreases when \(\mathbf{\idh}\) increases.} This trend is evident in the first row of Figure~\ref{fig:generalization}. To explain this, from Figures~\ref{fig:epoch-nrc} and ~\ref{fig:nrc1_id} we have known stronger regularization reduces $ID_H$. Theorems 4.1 and 4.3 in \citet{andriopoulos2024prevalence} also tell that stronger regularization reduces the dimension of the linear subspace containing the feature manifold. Thus, by reducing $ID_H$, the trained features tend to get squashed onto a lower-dimensional and more curved manifold, similar to the "crowding problem" described by \citet{maaten2008tsne}. A global linear layer $\bW$, performing only an affine transformation, cannot "unbend" such a manifold. Thus, as $ID_H$ decreases, it becomes more difficult for $\bW \bH +\bb$ to accurately match $\bY$ (which lies on its own curved manifold), explaining why train MSE decreases when $ID_H$ increases.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=\textwidth]{figures/Main_body/generalization_main.pdf}
+    \caption{Generalization and Intrinsic Dimension for Halfcheetah, MNIST, CIFAR-10, and Cheetah-run datasets.}
+    \label{fig:generalization}
+    \vspace{-10pt}
+\end{figure}
+
+\paragraph{Test MSE with respect to \(\mathbf{\idh}\) behaves differently according to its relationship to \(\mathbf{\idy}\).} The second row of Figure \ref{fig:generalization} shows fundamental differences between collapsed and non-collapsed models:
+
+\begin{itemize}[leftmargin=16pt]
+    \item $(\idh < \idy)$:
+    In this regime, the collapsed model's features are confined to a manifold whose intrinsic dimension is lower than that of the targets. This \textit{over-compression} intuitively means the last-layer features lack information essential for reconstructing and generalizing beyond the full target manifold, and Section \ref{sec:mathematical_analysis} will present a mathematical formulation of this claim. In this regime, generalization can be improved when the intrinsic dimension of last-layer features is increased, for example, by altering the network architecture or the regularization parameters. We can now answer the question posed in the Introduction: Why does neural collapse hinder generalization in multivariate regression? The explanation simply follows from $(1)$ the monotonic relationship between NRC1 and $ID_H$; and $(2)$ the reconstruction inability as just described. 
+
+    \item $(\idh \geq \idy)$: We distinguish these non-collapsed models between two cases:
+
+    \begin{itemize}[leftmargin=12pt]
+        \item {\em (i) Low-data or noisy-target tasks.}
+            In this case (Figs.~\ref{fig:generalization} (f), (g), (j)), the test MSE plots exhibit surprising U-shaped dependence on $\idh$, with a minimum error near $\idh = \idy$. Why does test MSE increase with $\idh$ when $\idh > \idy$? To explain this, we note that when the amount of training data is small, or when the targets are noisy, $f_\theta$ learns a feature manifold whose intrinsic dimension is higher than that of the true feature manifold due to the stronger negative effect of outliers. Then, the extra dimensions in the feature manifold are used to predict training sample-specific noise, leading to overfitting the training set \citep{ma2018dimensionality, ansuini2019intrinsic}. This overfitting is exacerbated when regularization is reduced, or equivalently, when $\idh$ is increased, leading to higher test MSE.
+    
+        \item {\em (ii) High-data and low-noise tasks.}
+            In this case, test MSE follows the same trend as train MSE, decreasing monotonically with $\idh$ (Figs.~\ref{fig:generalization} (h),(i)). To explain, we note that with a large amount of training data and low target noise, $f_\theta$ can fit the training data closely while maintaining smoothness to avoid overfitting, and consequently, the training feature manifold $\bH_{\text{train}}$ is likely to resemble the test feature manifold $\bH_{\text{test}}$. 
+    \end{itemize}
+    
+\end{itemize}
+
+\begin{table}[ht]
+\caption{ Key Takeaways for Generalization.}
+\centering
+\scalebox{0.8}{
+\begin{tabular}{cccccccc}
+\toprule
+\textbf{Regime} & \textbf{ID} & \textbf{Typical behavior} \\
+\midrule
+Over-compressed & $\mathrm{ID}_H < \mathrm{ID}_Y$ & Underfitting with large train and test MSE \\
+Balanced & $\mathrm{ID}_H \approx \mathrm{ID}_Y$ &
+Sweet spot in low-data and noisy tasks \\
+Under-compressed & $\mathrm{ID}_H > \mathrm{ID}_Y$ &
+Benign overfitting with enough clean data\\
+\bottomrule
+\end{tabular}
+}
+\label{table:gen}
+\end{table}
+
+
+Table~\ref{table:gen} provides the key takeaways concerning generalization and intrinsic dimension. In Appendix~\ref{appx:comparison_with_classification}, we review the generalization of neural collapse for classification tasks and contrast it to our study for multivariate regression tasks.
+
+
+\subsection{Practical Guideline: Intrinsic Dimension as a Surrogate for Policy Evaluation} \label{sec:practical}
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+\vspace{-16pt}
+    \centering
+    \includegraphics[width=\linewidth]{figures/Main_body/vd4rl_performance.pdf}
+    \caption{Relationship between $\idh$ and normalized model performance ($\in[0,100]$; the higher, the better). The horizontal red dashed line represents $\idy$. }
+    \label{fig:rl_evaluation}
+    \vspace{-10pt}
+\end{wrapfigure}
+
+Our findings regarding NRC geometry have direct implications for evaluating real-world control models, where deployment-time evaluation is expensive, unsafe, and resource-limited~\citep{levine2020offline_rl}. We demonstrate this on the Cheetah-run visual control task introduced in Section~\ref{sec:datasets}, where we train policies via behavior cloning on 20K and 80K expert demonstrations and evaluate them by executing the learned policy in the DeepMind Control Suite simulator~\citep{tassa2018deepmindcontrolsuite}.
+
+
+Figure~\ref{fig:rl_evaluation} plots the relationship between $\idh$ and \emph{actual} normalized policy performance (ranging from 0 to 100). Consistent with the test MSE analysis, performance exhibits an inverted U-shape, peaking near $\idh = \idy$, which mirrors the ID--generalization relationship identified in Section~\ref{sec:generalization}. Crucially, validation MSE alone is an unreliable proxy for policy quality: small MSE differences can correspond to large variations in control performance (cf.\ Fig.~\ref{fig:generalization} (j) and Fig.~\ref{fig:rl_evaluation}). In contrast, the gap between $\idh$ and $\idy$ provides a complementary signal that consistently predicts both low test MSE and high policy performance.
+
+This observation motivates an actionable model selection strategy. Our analysis shows that well-generalizing models either maximize $\idh$ in the high-data regime or achieve $\idh \approx \idy$ in the low-data and noisy-target regime. In either case, selecting models that shrink the ID gap, $|\idh - \idy|$, yields a valid candidate pool of potentially best-performing policies, serving as a principled selection criterion. Compared to exhaustive hyperparameter grid search, this approach offers two advantages. First, it avoids missing optimal configurations in regions where the learned feature geometry changes abruptly across regimes. For instance, in the first row of Figure~\ref{fig_appx:id_evolution} (Reacher), increasing weight decay by as little as $2 \times 10^{-4}$ can shift a model into the over-compressed regime. Second, it reduces dependence on costly real-environment rollouts for policy evaluation, which in real robotic systems are inherently risky and resource-constrained.
+
+While these results constitute preliminary evidence on a simulated benchmark, they point toward a promising direction: automated, efficient hyperparameter selection via ID gap minimization, complementing or partially replacing expensive deployment-time evaluation.
+
+
+\section{Mathematical Intuition of Regression Collapse}
+\label{sec:mathematical_analysis}
+
+To provide a principled explanation for the empirical phenomena observed in Section~\ref{sec:generalization}, we present a mathematical characterization of regression collapse. We first describe how weight decay induces a dimensional reduction in the feature space (Section~\ref{sec:why_collapse}) and subsequently formalize why this necessitates a reconstruction error (Section~\ref{sec:why_fail}).
+
+\subsection{Why Weight Decay Causes Collapse}
+\label{sec:why_collapse}
+
+We analyze the effect of regularization through the Unconstrained Feature Model (UFM) framework adopted in prior work~\citep{mixon2022ufm,andriopoulos2024prevalence}, which treats the last-layer feature matrix as a free optimization variable rather than the output of a parameterized feature extractor. In this section, we slightly abuse some notations introduced in Section~\ref{sec:preliminary}. Let the feature matrix be $\bH \in \mathbb{R}^{d \times M}$. Given a centered target matrix $\tilde{\bY} \in \mathbb{R}^{n \times M}$ with empirical covariance $\bSigma = \frac{1}{M}\tilde{\bY}\tilde{\bY}^\top \in \mathbb{R}^{n\times n}$ (assuming $\bSigma$ is full rank with eigenvalues $\lambda_1 \geq \cdots \geq \lambda_n > 0$), the UFM minimizes:
+\begin{equation}
+\min_{\bW, \bH} \;\frac{1}{2M} \|\bW\bH - \tilde{\bY}\|_F^2 \;+\; \frac{\lambda_W}{2}\|\bW\|_F^2 \;+\; \frac{\lambda_H}{2}\|\bH\|_F^2,
+\label{eq:ufm}
+\end{equation}
+where $\bW \in \mathbb{R}^{n \times d}$ is the final linear layer; and $\lambda_W$, $\lambda_H$ are separate $L_2$ regularization parameters.\footnote{Practical regression objective defined in Section~\ref{sec:preliminary} applies the same weight decay regularization to all model parameters.} Without regularization ($\lambda_W = \lambda_H = 0$), global minimizers satisfy $\bW\bH = \tilde{\bY}$ and decompose as $\bH = \bW^\dagger \tilde{\bY} + (\bI_d - \bW^\dagger \bW)\bZ$ for arbitrary $\bZ \in \mathbb{R}^{d \times M}$~\citep{andriopoulos2024prevalence}. The term $\bW^\dagger \tilde{\bY}$ lies in the at-most-$n$-dimensional row space of $\bW$, while $(\bI_d - \bW^\dagger \bW)\bZ$ spans the $(d{-}n)$-dimensional null space of $\bW$, allowing $\bH$ to occupy up to $d$ dimensions. With regularization, our following result shows that this null-space freedom is eliminated.
+
+\begin{theorem}[Limiting Solution Structure; informal, see Appendix~\ref{appx:ufm_collapse}]
+\label{thm:limiting_informal} Let $(\bW_\lambda, \bH_\lambda)$ be the global minimizer of~\eqref{eq:ufm} and suppose $\lim_{\lambda_H \to 0, \lambda_W \to 0}(\lambda_H/\lambda_W) = k > 0$. Then, as regularization gradually vanishes, $\bW_\lambda \bH_\lambda \to \tilde{\bY}$ and the limiting features $\bH_0 = \lim \bH_\lambda$ satisfy $\bH_0 = \bW_0^\dagger \tilde{\bY}$, the minimum-norm solution with $\bZ = 0$. In particular, $\bH_0$ lies entirely within the $n$-dimensional row space of $\bW_0$.
+\end{theorem}
+
+Thus, even infinitesimally small weight decay biases features toward the minimum-norm solution, collapsing $\bH$ from the $d$-dimensional ambient space onto an $n$-dimensional subspace. Since typically $d \gg n$, this represents a massive dimensional reduction.
+
+\paragraph{From Neural Regression Collapse to ID Over-compression.}
+Theorem~\ref{thm:limiting_informal} explains why features concentrate in an $n$-dimensional linear subspace, but does not yet explain why $\idh$ can fall \emph{below} $\idy$. This transition is governed by the product $c := \lambda_W \lambda_H$. When $c < \lambda_n$ (the smallest eigenvalue of $\bSigma$), the regularized solution maps $\tilde{\bY}$ to $\bH_\lambda$ via an invertible affine transformation, preserving intrinsic dimension, e.g., $\idh = \idy$. However, when $c \geq \lambda_n$, the solution reduces $\text{rank}(\bH_\lambda) < n$ and breaks the invertibility. As a consequence, affine congruency is not guaranteed to hold, allowing $\idh$ to drop below $\idy$, entering the over-compressed regime. The formal characterization is provided in Remark~\ref{rem:ufm_affine_congruency} (Appendix~\ref{appx:ufm_collapse}).
+
+This analysis highlights the diagnostic value of intrinsic dimension in practice. The UFM parameter $c = \lambda_W \lambda_H$ is not directly observable, as it arises from a simplified theoretical abstraction rather than an explicit practical training objective. However, intrinsic dimension serves as an empirical proxy: the transition from $\idh \approx \idy$ to $\idh < \idy$ signals that the effective regularization strength has crossed the critical threshold $c = \lambda_n$, placing the model in the over-compressed regime where affine congruency between features and targets breaks down.
+
+\subsection{Why Collapsed Models Fail to Generalize}
+\label{sec:why_fail}
+
+The over-compression identified above creates an unavoidable reconstruction error, which we formalize by treating the final layer as a smooth map $g$ from the feature manifold to the target space.
+
+\begin{theorem}[Non-surjectivity of Over-compressed Maps]
+\label{thm:non_surjectivity}
+Let $\mathcal{M}_H$ be a smooth $m$-dimensional feature manifold and $\mathcal{N}_Y$ be a smooth $n$-dimensional target manifold, with $m < n$. A smooth map $g: \mathcal{M}_H \to \mathcal{N}_Y$ cannot be surjective; specifically, the image $g(\mathcal{M}_H)$ has Lebesgue measure zero in $\mathcal{N}_Y$.
+\end{theorem}
+
+As proven in Appendix~\ref{appx:non_surjectivity} via Sard's Theorem, the condition $m < n$ in the over-compressed regime implies that the set of all possible model predictions is a proper subset of the target manifold. Geometrically, there will always be points on the target manifold that lie outside the model's predictive reach, making perfect reconstruction mathematically impossible. This explains why over-compressed models consistently exhibit high test MSE across all experiments (Figures~\ref{fig:generalization}, \ref{fig_appx:generalization_appx_1} and \ref{fig_appx:generalization_appx_2}).
+
+\section{Conclusion}
+In this paper, we provided a systematic geometric analysis of neural regression collapse through the lens of intrinsic dimension. We showed that regression collapse corresponds to an over-compressed regime ($\idh < \idy$) that discards information essential for reconstructing target manifolds, explaining why collapse, beneficial in classification, is detrimental in regression. For non-collapsed models, generalization behavior depends on whether the task is low-data/noisy or high-data/low-noise. These findings yield a practical guideline: minimizing the ID gap $|\idh - \idy|$ improves generalization across both regimes, suggesting principled strategies for model selection in applied multivariate regression tasks such as robotic control. For limitations and future work, we refer to Appendix~\ref{appx:limitation}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%% Acknowledgments %%%%%%%%%%%%%%%%%%%%%%%
+% \begin{ack}
+% Use unnumbered first level headings for the acknowledgments. All acknowledgments
+% go at the end of the paper before the list of references. Moreover, you are required to declare
+% funding (financial activities supporting the submitted work) and competing interests (related financial activities outside the submitted work).
+% More information about this disclosure can be found at: \url{https://neurips.cc/Conferences/2026/PaperInformation/FundingDisclosure}.
+
+
+% Do {\bf not} include this section in the anonymized submission, only in the final paper. You can use the \texttt{ack} environment provided in the style file to automatically hide this section in the anonymized submission.
+% \end{ack}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%
+% References follow the acknowledgments in the camera-ready paper. Use unnumbered first-level heading for
+% the references. Any choice of citation style is acceptable as long as you are
+% consistent. It is permissible to reduce the font size to \verb+small+ (9 point)
+% when listing the references.
+% Note that the Reference section does not count towards the page limit.
+\newpage
+\bibliography{neurips_2026}
+\bibliographystyle{neurips_2026}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% Appendix %%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{appendix}
+
+%%%%%%%%%%%%%%%%%%%%%%% Checklist %%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+% \input{checklist}
+
+
+\end{document}

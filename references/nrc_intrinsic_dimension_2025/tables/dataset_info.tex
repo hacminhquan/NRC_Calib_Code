@@ -1,0 +1,38 @@
+\begin{table}[htbp]
+
+\caption{Overview of datasets employed in the main body.}
+\begin{center}
+
+\scalebox{0.65}{
+\begin{tabular}{ccccccc}
+\toprule
+\textbf{Dataset} & \textbf{Data Size} & \textbf{Input Type} &\textbf{Input Dim ($\mathrm{D}$)} & \textbf{Input ID ($\idx$)} & \textbf{Target Dim} ($n$) & \textbf{Target ID ($\idy$)}\\
+\midrule
+Swimmer & 20,000 & Raw state & 8 & 3.98 & 2 & 2.00\\
+
+Reacher & 20,000 & Raw state & 11 & 3.65 & 2 & 1.99\\
+
+Hopper & 20,000 & Raw state & 11 & 4.35 & 3  & 2.92\\
+
+Halfcheetah & 20,000 & Raw state & 17 & 6.58 & 6  & 5.27\\
+
+Ant & 20,000 & Raw state & 111 & 7.83 & 8 & 7.43\\
+
+\midrule
+MNIST & 50,000 & Grayscale image & 28 $\times$ 28 & 12.76 & 25 & 8.02\\
+CIFAR-10 & 50,000 & RGB image & 32$\times$ 32$\times$ 3 & 27.20 & 10 & 9.51\\
+
+\midrule
+Cheetah-run & 80,000 & Stacked RGB image & $84\times84\times9$ & 8.96 & 6 & 6.00\\
+
+
+    
+\bottomrule
+\end{tabular}
+}
+
+\end{center}
+\label{table:dataset}
+\end{table} 
+
+% \footnotetext{Frame stack is commonly applied for visual control tasks. A single observation is of shape $84\times84\times3$. A frame stack of 3 is used in our experiments, resulting in visual inputs of dimension $84\times84\times9$.}
