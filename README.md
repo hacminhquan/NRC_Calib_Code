@@ -6,7 +6,7 @@ reproduces the NRC1--NRC3 metrics from the primary literature and explicitly
 labels the NRC-Cal distance and calibration map as new proposed methodology.
 
 Start in `notebooks/00_environment.ipynb`, then run the numbered notebooks.
-Each notebook has Drive, GitHub, and SSH/rsync project-access instructions.
+Each notebook has Drive and SSH/rsync project-access instructions.
 
 ## Method attribution
 

@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOKS = ROOT / "notebooks"
 
-BOOTSTRAP = '''# Self-contained Colab bootstrap: Drive first, then configured GitHub/SSH roots.
+BOOTSTRAP = '''# Self-contained Colab bootstrap: Drive first, then SSH/rsync from the Desktop.
 from pathlib import Path
 import importlib.util
 import os, sys
@@ -22,10 +22,10 @@ except ImportError:
 candidates = []
 if os.environ.get("NRC_CAL_PROJECT_ROOT"):
     candidates.append(Path(os.environ["NRC_CAL_PROJECT_ROOT"]))
-candidates += [Path("/content/drive/MyDrive/NRC-Cal/project"), Path("/content/NRC-Cal/project"), Path.cwd().parent, Path.cwd()]
+candidates += [Path("/content/drive/MyDrive/NRC_CALIB_CODE"), Path("/content/NRC_CALIB_CODE"), Path.cwd().parent, Path.cwd()]
 PROJECT_ROOT = next((p.resolve() for p in candidates if (p / "src").is_dir()), None)
 if PROJECT_ROOT is None:
-    raise FileNotFoundError("NRC-Cal project unavailable. Run 00_environment.ipynb or set NRC_CAL_PROJECT_ROOT after Drive, GitHub, or SSH/rsync synchronization.")
+    raise FileNotFoundError("NRC-Cal project unavailable. Run 00_environment.ipynb or set NRC_CAL_PROJECT_ROOT after Drive or SSH/rsync synchronization.")
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 runtime_path = PROJECT_ROOT / "src" / "utils" / "runtime.py"
 if not runtime_path.is_file():
@@ -34,6 +34,7 @@ spec = importlib.util.spec_from_file_location("nrc_cal_runtime", runtime_path)
 if spec is None or spec.loader is None:
     raise ImportError(f"Unable to load runtime helper from {runtime_path}")
 runtime_module = importlib.util.module_from_spec(spec)
+sys.modules["nrc_cal_runtime"] = runtime_module
 spec.loader.exec_module(runtime_module)
 configure_runtime = runtime_module.configure_runtime
 gpu_summary = runtime_module.gpu_summary
@@ -183,7 +184,7 @@ def code(text: str) -> dict[str, object]:
 
 def build(name: str, title: str, description: str, attribution: str, body: str) -> None:
     cells = [
-        markdown(f"# NRC-Cal: {title}\n\n{description}\n\n**Attribution.** {attribution}\n\n**Resources.** Expected runtime varies with dataset/checkpoint availability; GPU memory is limited to one frozen model and one batch. Expected output paths are printed by executable cells. Every code cell independently resolves Drive/GitHub/SSH-synchronized project source before it acts."),
+        markdown(f"# NRC-Cal: {title}\n\n{description}\n\n**Attribution.** {attribution}\n\n**Resources.** Expected runtime varies with dataset/checkpoint availability; GPU memory is limited to one frozen model and one batch. Expected output paths are printed by executable cells. Every code cell independently resolves Drive/SSH-synchronized project source before it acts."),
         code(BOOTSTRAP),
         markdown("## Equations and attribution\n\n**Published NRC theory (NeurIPS 2024).** `NRC1=M^-1 sum_i ||h~_i-P_H_PCA_n(h~_i)||_2^2`; `NRC2=M^-1 sum_i ||h~_i-P_W^T(h~_i)||_2^2`; and `NRC3=||WW^T/||WW^T||_F-(Sigma^(1/2)-gamma^(1/2)I_n)/||Sigma^(1/2)-gamma^(1/2)I_n||_F||_F^2`, where `gamma in (0,lambda_min)`. These are implemented exactly in `geometry.nrc`. **NRC-Cal proposal.** `D_i=w1 r1_i+w2 r2_i+w3 NRC3`, `D_dataset=M^-1 sum_i D_i`, and the frozen scale map are new equations, specified with assumptions and proof sketch in `docs/methodology.md`. No proposed equation is attributed to the NRC papers."),
         code(body),

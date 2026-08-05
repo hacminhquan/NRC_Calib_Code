@@ -1,0 +1,6 @@
+[submodule "external/quantile-recalibration-training"]
+	path = external/quantile-recalibration-training
+	url = https://github.com/Vekteur/quantile-recalibration-training.git
+[submodule "external/probabilistic-calibration-study"]
+	path = external/probabilistic-calibration-study
+	url = https://github.com/Vekteur/probabilistic-calibration-study.git

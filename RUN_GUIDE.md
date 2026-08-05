@@ -8,17 +8,16 @@ This is the exact execution order for a Colab Pro T4 runtime. Run notebooks from
 2. Select **Runtime -> Change runtime type -> T4 GPU**.
 3. Open `project/notebooks/00_environment.ipynb`.
 4. Run every cell in order. When prompted, authorize Google Drive.
-5. In Cell 3A, set `DRIVE_PROJECT_CANDIDATES` if your folder is not one of:
-   `MyDrive/NRC-Cal/project`, `MyDrive/project`, or `MyDrive/NRC-Cal`.
+5. In Cell 3A, set `DRIVE_PROJECT_ROOT` if your folder is not `MyDrive/NRC_CALIB_CODE`.
 6. Confirm Cell 5 prints `CUDA available: True` and a T4 GPU name.
 
 The preferred layout in Drive is:
 
 ```text
-MyDrive/NRC-Cal/project/
+MyDrive/NRC_CALIB_CODE/
 ```
 
-The notebook also supports GitHub (Cell 3B) and SSH/rsync (Cell 3C). Configure only the option you use; leave the others unchanged.
+The notebook also supports SSH/rsync (Cell 3B). Configure only the option you use; leave the others unchanged.
 
 ## 2. Run the numbered notebooks
 
@@ -55,7 +54,7 @@ Do not skip a notebook unless its required input artifact already exists and is 
 
 ## 4. If Colab reports `ModuleNotFoundError: utils.runtime`
 
-This usually means Colab is executing an old notebook copy. Close the notebook tab, reopen the current file from Drive/GitHub, and run **Runtime -> Restart session**, then rerun notebook 00 first. The current notebooks load `project/src/utils/runtime.py` by file path and do not depend on a fragile package import.
+This usually means Colab is executing an old notebook copy. Close the notebook tab, reopen the current file from Drive, and run **Runtime -> Restart session**, then rerun notebook 00 first. The current notebooks load `project/src/utils/runtime.py` by file path and do not depend on a fragile package import.
 
 You can verify the notebook is current by searching the first code cell for `spec_from_file_location`. If it is absent, replace the Drive copy with the latest `project/notebooks/01_download_repositories.ipynb` from this repository.
 

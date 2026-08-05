@@ -25,31 +25,23 @@ class RuntimeInfo:
 
 
 def configure_runtime(project_root: str | Path | None = None) -> RuntimeInfo:
-    """Mount Drive when available, resolve roots, and enable safe CUDA settings."""
+    """Resolve the uploaded/local project root and enable safe CUDA settings."""
     import psutil
     import torch
 
-    drive_root: Path | None = None
-    try:
-        from google.colab import drive  # type: ignore
-
-        drive_root = Path("/content/drive")
-        drive.mount(str(drive_root), force_remount=False)
-    except ImportError:
-        pass
     configured = project_root or os.environ.get("NRC_CAL_PROJECT_ROOT")
     candidates = [Path(configured).expanduser()] if configured else []
-    if drive_root is not None:
-        candidates.extend([drive_root / "MyDrive" / "NRC-Cal" / "project", drive_root / "MyDrive" / "project"])
-    candidates.extend([Path.cwd().parent, Path.cwd(), Path("/content/NRC-Cal/project")])
-    root = next((path for path in candidates if (path / "src").is_dir()), candidates[0])
+    candidates.extend([Path("/content/NRC_CALIB_CODE"), Path.cwd().parent, Path.cwd()])
+    root = next((path for path in candidates if (path / "src").is_dir()), None)
+    if root is None:
+        raise FileNotFoundError(
+            "NRC-Cal project not found. Upload the project ZIP in notebook 00 or set "
+            "NRC_CAL_PROJECT_ROOT to a directory containing src/."
+        )
     root = root.resolve()
     for name in ("outputs", "figures", "checkpoints", "logs"):
         (root / name).mkdir(parents=True, exist_ok=True)
-    if drive_root is not None and not str(root).startswith(str(drive_root)):
-        checkpoint_root = drive_root / "MyDrive" / "NRC-Cal" / "project" / "checkpoints"
-    else:
-        checkpoint_root = root / "checkpoints"
+    checkpoint_root = root / "checkpoints"
     checkpoint_root.mkdir(parents=True, exist_ok=True)
     os.environ["NRC_CAL_PROJECT_ROOT"] = str(root)
     os.environ["NRC_CAL_CHECKPOINT_ROOT"] = str(checkpoint_root)
