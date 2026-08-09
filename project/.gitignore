@@ -1,0 +1,26 @@
+# Data & large artifacts (kept on Drive, not in git)
+checkpoints/*
+!checkpoints/.gitkeep
+outputs/*
+!outputs/.gitkeep
+figures/*
+!figures/.gitkeep
+logs/*
+!logs/.gitkeep
+
+# External repos cloned by notebook 01 (not vendored into this repo)
+external/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+*.egg-info/
+
+# Env
+.env
+.venv/
+
+# OS
+.DS_Store

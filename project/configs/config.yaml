@@ -1,0 +1,66 @@
+# Root Hydra config for NRC-Cal.
+# Notebook 00 reads project.* and sync.* below. Later notebooks will add
+# their own config groups (dataset, model, calibration) as they are built.
+
+project:
+  name: nrc-cal
+  repo_dir_name: project   # folder name expected under Drive / local root
+
+compute:
+  target_gpu: "T4"          # informational: notebook 00 checks and warns (not hard-fails) if the
+                             # assigned Colab GPU differs, since Colab availability varies
+  mixed_precision_dtype: fp16  # T4 = Turing (compute capability 7.5): no native bf16 tensor cores,
+                                # unlike Ampere+. Always use fp16 autocast on T4, never bf16.
+
+data:
+  # Verified against the real repo (uq/configs/dataset_groups.py): the paper's
+  # actual reported PCE numbers use this exact split, NOT the simplified
+  # 50/10/15/25 split shown in demo/datamodule.py.
+  train_inter_val_calib_test_split_ratio: [0.65, 0.0, 0.1, 0.15, 0.1]
+  pilot_group: uci   # 12 datasets, no OpenML account/API needed -- best first pilot
+  uci_group_datasets:
+    [CPU, Yacht, MPG, Energy, Crime, Fish, Concrete, Airfoil, Kin8nm, Power, Naval, Protein]
+
+checkpoints:
+  # IMPORTANT (verified by cloning the real repo): neither Vekteur repo ships
+  # pretrained weights. Their main experiment command runs with
+  # remove_checkpoints=True. This project must train its own BASE models --
+  # notebook 03 trains, it does not download.
+  pretrained_available: false
+
+paths:
+  # Resolved at runtime by src.utils.env_utils.locate_project_root;
+  # these are documentation of the *intended* layout, not hard-coded absolutes.
+  notebooks: notebooks
+  src: src
+  configs: configs
+  outputs: outputs
+  figures: figures
+  checkpoints: checkpoints
+  logs: logs
+  tests: tests
+
+sync:
+  # Option A — Google Drive (default / preferred)
+  drive:
+    enabled: true
+    mount_point: /content/drive
+    drive_subpath: MyDrive/${project.repo_dir_name}
+
+  # Option B — GitHub (set repo_url once you've pushed this scaffold)
+  github:
+    enabled: false
+    repo_url: ""   # e.g. "https://github.com/<you>/nrc-cal.git"
+    branch: main
+
+  # Option C — SSH / rsync (requires your Mac to be reachable — see README)
+  ssh_rsync:
+    enabled: false
+    remote_user: ""
+    remote_host: ""
+    remote_path: ""
+    ssh_port: 22
+
+external_repos:
+  quantile_recalibration_training: https://github.com/Vekteur/quantile-recalibration-training
+  probabilistic_calibration_study: https://github.com/Vekteur/probabilistic-calibration-study
